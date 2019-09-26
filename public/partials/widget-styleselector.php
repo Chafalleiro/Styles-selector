@@ -111,11 +111,13 @@ function short_func() {
 	prepareOutput();
 	echo '</form></div>';
 	}
-function wpshout_action_example() { //Add restore values and enable the select input at the end of the page to prevent errors loading objects
+function wpshout_action_example() {
+//Add restore values and enable the select input at the end of the page to prevent errors loading objects
+//Also check a cookie and if exists, sets the option stored.
     echo '<div style="background: green; color: white; text-align: right;" id="ss_selector_wait"><script>
 	var k=0;for (k;k < eleArray.length;k++){saveValues(k);};document.getElementById("ss_selector_wait").style.display = "none";
 	var x = document.getElementsByClassName("widget_sselector");
-	for (i = 0; i < x.length; i++){x[i].disabled = false;}
+	for (i = 0; i < x.length; i++){x[i].disabled = false;}checkCookie();
 	</script>Wait a sec, saving restore vars.</div>'; 
 }
 
