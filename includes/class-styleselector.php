@@ -17,7 +17,7 @@
  * @copyright         2019 Alfonso Abelenda Escudero
  * @license           GPL-2.0-or-later
  *
- * Plugin URI:        https://chafalladas.com/styleselector
+ * Plugin URI:        https://chafalladas.com/styles-selector-plugin/
  * Description:       A plugin that changes on the fly the styles of a page.
  * Version:           1.0.0
  * Requires at least: 5.2
