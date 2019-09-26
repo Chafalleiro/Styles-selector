@@ -1,9 +1,14 @@
 === Styles selector ===
 Contributors: Chafalleiro
 Donate link: https://chafalladas.com
+Plugin URI:  https://chafalladas.com
+Author URI:  https://chafalladas.com
 Tags: styles, switcher, css, theme configuration
-Requires at least: ??
 Tested up to: 5.2.3
+License: GPLv2 or later
+Version:           1.0.0
+Requires at least: 5.2
+Requires PHP:      7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

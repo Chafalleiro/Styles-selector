@@ -11,7 +11,24 @@
  *
  * @package    Styleselector
  * @subpackage Styleselector/includes
+ 
+ * @package           PluginPackage
+ * @author            Your Name
+ * @copyright         2019 Alfonso Abelenda Escudero
+ * @license           GPL-2.0-or-later
+ *
+ * Plugin URI:        https://chafalladas.com/styleselector
+ * Description:       A plugin that changes on the fly the styles of a page.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Alfonso Abelenda Escudero
+ * Author URI:        https://chafalladas.com
+ * Text Domain:       styleselector
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
+ 
 
 /**
  * The core plugin class.
