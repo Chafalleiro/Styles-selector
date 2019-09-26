@@ -122,4 +122,4 @@ function wpshout_action_example() { //Add restore values and enable the select i
 add_shortcode( 's_selector','short_func');
 add_action('wp_footer', 'wpshout_action_example');
 //Uncomment to add styles selectore form at the head section
-add_action('wp_head', 'short_func');
+//add_action('wp_head', 'short_func');

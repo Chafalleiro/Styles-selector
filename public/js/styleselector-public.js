@@ -41,7 +41,7 @@ function addOption(a_option,a_class,a_name,a_color,a_font,a_alfab,a_alfaf,dontca
 	var j,k=0;
 	for (k=0;k < eleArray.length;k++)//Check if entry already exists
 	{
-		if(eleArray[k].eleName == a_name)
+		if(eleArray[k].eleName == a_name && eleArray[k].option == a_option)
 		{
 		exists = true;
 		}
