@@ -1,7 +1,7 @@
 === Styles selector ===
 Contributors: Chafalleiro
 Donate link: https://chafalladas.com
-Plugin URI:  https://chafalladas.com
+Plugin URI:  https://chafalladas.com/styles-selector-plugin/
 Author URI:  https://chafalladas.com
 Tags: styles, switcher, css, theme configuration
 Tested up to: 5.2.3
