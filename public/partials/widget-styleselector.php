@@ -72,7 +72,7 @@ function prepareOutput()
 {
 		$options = get_option('styleselector');
 		$ss_fieldTypes = array("ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont","ss_option");
-		$ss_option_value = array("<select onchange='changeProps(this.value)' class='widget_sselector' disabled><option value='Restore'>Restore</option>");
+		$ss_option_value = array("<form><select onchange='changeProps(this.value)' class='widget_sselector' disabled><option value='Restore'>Restore</option>");
 		$ss_option_values = array("Restore");
 		for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
 		{
@@ -103,13 +103,14 @@ function prepareOutput()
 			}
 		}
 		foreach ($ss_option_value as $key=>$item){echo "$item\n";}
-		echo "</select>";
+		echo "<form></select>";
 }
 
 function short_func() {
-	echo '<div align="center"><form>Select a style: ';
+	echo '<div align="center" class="shortcode_sselector">Select a style: ';
 	prepareOutput();
-	echo '</form></div>';
+	//echo 'Style: '.get_stylesheet();
+	echo '</div>';
 	}
 function wpshout_action_example() {
 //Add restore values and enable the select input at the end of the page to prevent errors loading objects
@@ -117,11 +118,13 @@ function wpshout_action_example() {
     echo '<div style="background: green; color: white; text-align: right;" id="ss_selector_wait"><script>
 	var k=0;for (k;k < eleArray.length;k++){saveValues(k);};document.getElementById("ss_selector_wait").style.display = "none";
 	var x = document.getElementsByClassName("widget_sselector");
-	for (i = 0; i < x.length; i++){x[i].disabled = false;}checkCookie();
+	for (i = 0; i < x.length; i++){x[i].disabled = false;};
+	var an_option = checkCookie();
+	for (i = 0; i < x.length; i++){x[i].value = an_option;};
 	</script>Wait a sec, saving restore vars.</div>'; 
 }
 
 add_shortcode( 's_selector','short_func');
 add_action('wp_footer', 'wpshout_action_example');
 //Uncomment to add styles selectore form at the head section
-//add_action('wp_head', 'short_func');
+add_action('wp_head', 'short_func');

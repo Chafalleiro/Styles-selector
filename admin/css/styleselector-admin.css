@@ -10,6 +10,11 @@
 *    Info:     http://www.mraffaele.com/blog/2011/10/25/css-accordion-no-javascript/
 *
 */
+/* Background image for test */
+.ss_bg_testcolor
+{
+	 background-image: url("../../assets/chafalladas_plain_delaweb.svgz_.svg");
+}
 
 /* Shared for all accordion types */
 .accordion {

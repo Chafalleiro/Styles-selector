@@ -26,12 +26,12 @@ var changes = {
 	bgColor: function()
 	{
 		var tcolr = hexToRgbA(this.rgbColor);
-		return "rgba(" + tcolr.ssR + ", " + tcolr.ssG + ", " + tcolr.ssB + ","+ this.alfaBg+ ")";
+		return "rgba(" + tcolr.ssR + ", " + tcolr.ssG + ", " + tcolr.ssB + ", "+ this.alfaBg/100 + ")";
 	},
 	fnColor: function()
 	{
 		var tcolr = hexToRgbA(this.rgbFont);
-		return "rgba(" + tcolr.ssR + ", " + tcolr.ssG + ", " + tcolr.ssB + ","+ this.alfaFn+ ")";
+		return "rgba(" + tcolr.ssR + ", " + tcolr.ssG + ", " + tcolr.ssB + ", "+ this.alfaFn/100 + ")";
 	}
 }
 //Add new values
@@ -86,6 +86,7 @@ function changeProps(wichOption)
 				}
 				else
 				{
+					var pp = eleArray[i].fnColor();
 					document.getElementById(eleArray[i].eleName).style.backgroundColor = eleArray[i].bgColor();
 					document.getElementById(eleArray[i].eleName).style.color = eleArray[i].fnColor();
 				}
@@ -165,8 +166,16 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-  var option=getCookie("ss_Option");
-  if (option != "") {
-	  changeProps(option);
-  }
+	var option=getCookie("ss_Option");
+//console.log("Cookie?");
+	if (option != "")
+	{
+//console.log("Cookie!");
+		changeProps(option);
+		return option;
+	}
+	else
+	{
+		return "Restore";
+	}
 }

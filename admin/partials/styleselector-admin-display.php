@@ -64,7 +64,7 @@ function ss_displayThemes($ss_tab) {
 		echo "						<td><label class='ss_switch'><input type='checkbox'  id='option_".$ss_tab."_".$ss_count."' oninput=\"fillForm('".$ss_tab."_".$ss_count."')\"><span class='sw_slider'></label></td>";
         echo "                    </tr>";
 		echo "                </table>";
-		echo "				<div style='background-image:url(https://chafalladas.com/wp-content/uploads/2014/05/chafalladas_plain_delaweb.svgz_.svg)'><div id='test_color_".$ss_tab."_".$ss_count."'>Color TEST</div></div>";
+		echo "				<div class='ss_bg_testcolor'><div id='test_color_".$ss_tab."_".$ss_count."'>Color TEST</div></div>";
 		echo "            </fieldset>";
 		echo "            </div>";
 		echo "        </li>";
@@ -164,7 +164,6 @@ for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
 		<p>Additionally is a last minute adittion, you can uncoment the las line of the widget-selector.php file in the /public/partials dir of the pulugin directory
 		using the wordpress plugin editor to show the drop down at the start of each page.</p>
 		</div>
-	
     <script>
         ss_pass_stored();
     </script>
