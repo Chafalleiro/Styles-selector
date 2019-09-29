@@ -1,4 +1,5 @@
-=== Styles selector ===
+Styles selector
+===============
 Contributors: AlfonsoAB
 Donate link: https://chafalladas.com/styles-selector-plugin/
 Plugin URI:  https://chafalladas.com/styles-selector-plugin/
@@ -22,8 +23,8 @@ https://mraffaele.com/posts/2011/10/25/css-accordion-no-javascript/
 https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 https://www.w3schools.com/
 
-== Description ==
-
+Description
+===========
 Plugin for altering several items in a theme in order to change the visualization. You can choose which kind of item will be,
 an individual CSS element or an entire class by specifing the type of element.
 If you have a theme switcher, you can also alter several themes (up to five).
@@ -57,24 +58,25 @@ This plugin creates a select menu that lets a user change the color style of a p
 ## Frontend
 	* The user can choose between a default "Restore" option, and the ones defined by you.
 	
-== Installation ==
+Installation
+============
+1 a. Upload `styleselector` directory to the `/wp-content/plugins/` directory
+2 a. Activate the plugin through the 'Plugins' menu in WordPress
 
-1a. Upload `styleselector` directory to the `/wp-content/plugins/` directory
-2a. Activate the plugin through the 'Plugins' menu in WordPress
-
-1b. Upload the zip with the "Upload plugin" Administrator menu option.
-2b. Activate it.
+1 b. Upload the zip with the "Upload plugin" Administrator menu option.
+2 b. Activate it.
 
 3. An new option "Style selector" will appear in the settting menu. There will be the configuration screen.
 
-== Frequently Asked Questions ==
-
+Frequently Asked Questions
+==========================
 = Works with multisites? =
 
 Tested in a multisite with * domain names and works fine. Can't say yet if in a MU with only one domain will work the same.
 
 
-== Screenshots ==
+Screenshots
+===========
 1. Page dark themed by the plugin.
 2. Page restored by the plugin.
 3. Options panel. Here you configure the plugin
