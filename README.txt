@@ -59,11 +59,11 @@ This plugin creates a select menu that lets a user change the color style of a p
 	
 == Installation ==
 
-1a. Upload `styleselector` directory to the `/wp-content/plugins/` directory
-2a. Activate the plugin through the 'Plugins' menu in WordPress
+1 a. Upload `styleselector` directory to the `/wp-content/plugins/` directory
+2 a. Activate the plugin through the 'Plugins' menu in WordPress
 
-1b. Upload the zip with the "Upload plugin" Administrator menu option.
-2b. Activate it.
+1 b. Upload the zip with the "Upload plugin" Administrator menu option.
+2 b. Activate it.
 
 3. An new option "Style selector" will appear in the settting menu. There will be the configuration screen.
 
@@ -88,3 +88,22 @@ First version
 
 = 1.0 =
 Plugin release.
+
+== TODO ==
+
+Add font size and face frontend customization.
+Add background image backend option.
+Option to selectively display the "head" menu instead of uncomenting it.
+Prepare code for translation.
+Clean a bit the code.
+
+== Directories explanation ==
+* styleselector: contains subdirectories, license, readme and unistall files.
+ "styleselector.php" Bootstrap
+ "uninstall.php" Unistall file made by the boilerplate plugin generator.
+ "index.php" Blank file made by the boilerplate plugin generator.
+
+* admin: Where the config routines reside. Has an css dir with the styles of the config page, a js dir with client side routines, mostly appearence related ones. Partials, where the display of options are made. And two files, index.php, bank, and class-styleselector where main routines reside.
+* public: has the same structure of the admin one. In partial has also a widget management routines file. 
+* assets: images and media needed by the plugin.
+* includes: general routines to make the pluging integrate witn Wordpress.
