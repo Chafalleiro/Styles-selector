@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://chafalladas.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Styleselector
  * @subpackage Styleselector/admin
@@ -157,23 +157,31 @@ public function display_plugin_setup_page() {
  * @since    1.0.0
  */
 
-public function validate($input) {
-
+public function validate($input)
+	{
 	$valid = array();
-    $ss_fieldTypes = array("ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont","ss_option");
+    $ss_fieldTypes = array("ss_disp_head", "ss_select_style", "ss_select_sheet_div", "ss_select_sheet_sel", "ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont","ss_option");
     for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
         {
         $ss_fieldId = $ss_fieldTypes[0]."_".$ss_tab;
-        $valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);        
-            for ($ss_count = 1; $ss_count < 11; $ss_count++)
-                {
-                for ($ss_fieldCount = 1; $ss_fieldCount < count($ss_fieldTypes); $ss_fieldCount++)
-                    {
-                    $ss_fieldId = $ss_fieldTypes[$ss_fieldCount]."_".$ss_tab."_".$ss_count;
-                    $valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
-                    }
-                }
-        }
+		$valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+		$ss_fieldId = $ss_fieldTypes[1]."_".$ss_tab;
+		$valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+		$ss_fieldId = $ss_fieldTypes[2]."_".$ss_tab;
+		$valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+		$ss_fieldId = $ss_fieldTypes[3]."_".$ss_tab;
+        $valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+		$ss_fieldId = $ss_fieldTypes[4]."_".$ss_tab;
+        $valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+		for ($ss_count = 1; $ss_count < 11; $ss_count++)
+			{
+			for ($ss_fieldCount = 5; $ss_fieldCount < count($ss_fieldTypes); $ss_fieldCount++)
+				{
+				$ss_fieldId = $ss_fieldTypes[$ss_fieldCount]."_".$ss_tab."_".$ss_count;
+				$valid[$ss_fieldId] =  wp_filter_nohtml_kses($input[$ss_fieldId]);
+				}
+			}
+		}
 	return $valid;
 	}
  public function options_update() {

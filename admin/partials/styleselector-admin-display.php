@@ -23,7 +23,32 @@ function ss_displayThemes($ss_tab) {
 		echo "<option value='".$theme_lst[$ss_count]."'>".$theme_lst[$ss_count]."</option>";
 	}
 	echo "</select>";
-//	echo "<fieldset>".get_stylesheet(). " ____  " .get_bloginfo('stylesheet_directory');
+	echo "<h3>Should the selector be displayed at the head of the page?</h3>";
+	echo "<input type='checkbox' id='disp_head_".$ss_tab."' name='disp_head_".$ss_tab."' oninput=\"fillForm('".$ss_tab."')\" />";
+	echo "<h3>Choose a style for the selectors. You can also alter them changing the \"shortcode_sselector\" for the div and  \"widget_sselector\" for the selector classes.</h3>";
+	echo "<table align='center'>";
+	echo "	<tr align='center'>";
+	echo "		<td width='50'>Choose a style for the selectors.</td>";
+	echo "		<td width='50'>Custom CCS for \"shortcode_sselector\".</td>";
+	echo "		<td width='50'>Custom CCS for \"widget_sselector\".</td>";
+	echo "		<td width='50'>";
+	echo "			<div class='shortcode_sselector_".$ss_tab."'>Select a style: ";
+	echo "			</div>";
+	echo "</td>";
+	echo "	</tr>";
+	echo "	<tr align='center'>";
+	echo "		<td><select name='select_style_".$ss_tab."' id='select_style_".$ss_tab."' oninput=\"styleSelect('".$ss_tab."')\">";
+	echo "			<option value='0'>Squared</option>";
+	echo "			<option value='1'>Rounded</option>";
+	echo "			<option value='2'>Custom</option>";
+	echo "		</select></td>";
+	echo "		<td><textarea id='select_sheet_div_".$ss_tab."' name='select_sheet_div_".$ss_tab."' cols='80' rows='4' class='all-options' disabled  oninput=\"styleSelect('".$ss_tab."')\">Select 'Custom' to edit.</textarea></td>";
+	echo "		<td><textarea id='select_sheet_sel_".$ss_tab."' name='select_sheet_sel_".$ss_tab."' cols='80' rows='4' class='all-options' disabled  oninput=\"styleSelect('".$ss_tab."')\">Select 'Custom' to edit.</textarea></td>";
+	echo "		<td style='width:150px'><div id='shortcode_sselector_".$ss_tab."'>";
+	prepareAdmOutput($ss_tab);
+	echo "		</div></td>";
+	echo "	</tr>";
+	echo "</table>";	
 	echo "<!-- Same as the themes options the list of configurable styles and classes is fixed, in this case to ten different styles and classes. -->";
 	echo "<h4>Options for this theme.</h4>";
 	echo "<!-- Pure CSS accordion courtesy of Michael Rafaelle http://www.mraffaele.com/blog/2011/10/25/css-accordion-no-javascript/. -->";    
@@ -36,15 +61,15 @@ function ss_displayThemes($ss_tab) {
 		echo "            <label for='checkbox-".$ss_tab."_".$ss_count."'>Option ".$ss_count."</label>";
 		echo "            <div class='content'>";
 		echo "            <fieldset class='stylesel-admin-colors'>";
-		echo "                <table align='center'>";
+		echo "                <table align='center' width='100%'>";
 		echo "                    <tr align='center'>";
-		echo "                      <td width='50'>Type a name for the option:&nbsp;</td>";
-		echo "                      <td width='50'>Class or element?&nbsp;</td>";
-		echo "                      <td width='50'>Name of the element to manipulate:&nbsp;</td>";
-		echo "                      <td width='150'>Pick the color of the background:&nbsp;</td>";
-		echo "						<td width='150'>Pick the color of the font:&nbsp;</td>";
-		echo "						<td width='150'>Background transparency:&nbsp;</td>";
-		echo "						<td width='150'>Font transparency:&nbsp;</td>";
+		echo "                      <td>Type a name for the option:&nbsp;</td>";
+		echo "                      <td>Class or element?&nbsp;</td>";
+		echo "                      <td>Name of the element to manipulate:&nbsp;</td>";
+		echo "                      <td>Pick the color of the background:&nbsp;</td>";
+		echo "						<td>Pick the color of the font:&nbsp;</td>";
+		echo "						<td>Background transparency:&nbsp;</td>";
+		echo "						<td>Font transparency:&nbsp;</td>";
 		echo "						<td>Active?</td>";
 		echo "                    </tr>";
 		echo "                    <tr align='center'>";
@@ -114,15 +139,28 @@ $options = get_option($this->plugin_name);
  * Filds preceded with ss_ are the wordpress ones, the other are work ones to use in this page only.
  * 
  */
-$ss_fieldTypes = array("ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont","ss_option");
+$ss_fieldTypes = array("ss_disp_head", "ss_select_style", "ss_select_sheet_div", "ss_select_sheet_sel", "ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont","ss_option");
 for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
 {
     $ss_fieldId = $ss_fieldTypes[0]."_".$ss_tab;
     echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
+
+    $ss_fieldId = $ss_fieldTypes[1]."_".$ss_tab;
+    echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
+
+    $ss_fieldId = $ss_fieldTypes[2]."_".$ss_tab;
+    echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
+
+    $ss_fieldId = $ss_fieldTypes[3]."_".$ss_tab;
+    echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
+
+    $ss_fieldId = $ss_fieldTypes[4]."_".$ss_tab;
+    echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
+
     echo "<fieldset class='stylesel-admin-colors'>";
     for ($ss_count = 1; $ss_count < 11; $ss_count++)
         {
-        for ($ss_fieldCount = 1; $ss_fieldCount < count($ss_fieldTypes); $ss_fieldCount++)
+        for ($ss_fieldCount = 5; $ss_fieldCount < count($ss_fieldTypes); $ss_fieldCount++)
             {
             $ss_fieldId = $ss_fieldTypes[$ss_fieldCount]."_".$ss_tab."_".$ss_count;
             echo $ss_fieldId."<input type='text' name='".$this->plugin_name."[".$ss_fieldId."]' id='".$ss_fieldId."' value=\"".$options[$ss_fieldId]."\"class='all-options' />";
@@ -141,10 +179,14 @@ for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
 		<h3 align="center">General</h3>
 		<p>This plugin creates a select menu that lets a user change the color style of a page or post to be changed acording the settings
 		that the blog administrator sets. </p>
-		<p>The admin can choose up to five different themes from the installed ones to be changed by selectint them in a drop down at the
+		<p>The admin can choose up to five different themes from the installed ones to be changed by selecting them in a drop down at the
 		beginning of each tab of the configuration page. Note that you can select the same theme several times if you run out of mods.</p>
-		<p>At each theme tab the admin can set up to ten color modifications to classes or individual elements.</p>
-		<br>
+		<p>At each theme tab the admin can set up to ten color modifications to classes or individual elements.</p>		
+		<p>You can configure the style of the selector for each theme. Also you can force the selector to be displayed at the top of the page instead of using a widget or a shortcode.</p>
+		<h4 align="center">Example</h4>	
+		<p>Copy this in the  "shortcode_sselector" box.<br> <code>font-size: 1.25em; font-weight: bolder; width: 100%; text-align:center; box-sizing: border-box; box-sizing: border-box; border: 2px solid #ccc; border-radius: 7px; padding: 9px 15px 9px 20px;</code></p>
+		<p> And this in the "widget_sselector".<br> <code>font-size: 1.25em; font-weight: bolder; width: 100%; text-align:center; box-sizing: border-box; box-sizing: border-box; border: 2px solid #ccc; border-radius: 7px; padding: 9px 15px 9px 20px;</code></p>
+
 		<h3 align="center">Options fields</h3>
 		<p>Name an option to be displayed to the user. This option will be added in the select input field.</p>
 		<p>Select wich type of style will be changed, class or individual element. If you used the web developer tools of yor browser
@@ -158,14 +200,56 @@ for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
 		<p>The option button indicates if the edited option will be used by the plugin. No options will be added if they aren't active.</p>
 		<p>Save yor changes clicking the blue button at the end of the page</p>
 		<h3 align="center">Displaying the select drop down</h3>
-		<p>There are currently two options, fist is to add the "Style selector widget" that this plugin creates to any sidebar.
+		<p>There are currently two options, first one is to add the "Style selector widget" that this plugin creates to any sidebar.
 		You can also configure a title for the widget.</p>
-		<p>The second is via a shortcode. Place the shortcode "[s_selector]" anywherw to display the drop down menu</p>
-		<p>Additionally is a last minute adittion, you can uncoment the las line of the widget-selector.php file in the /public/partials dir of the pulugin directory
-		using the wordpress plugin editor to show the drop down at the start of each page.</p>
+		<p>The second is via a shortcode. Place the shortcode <b>"[s_selector]"</b> anywhere to display the drop down menu</p>
 		</div>
     <script>
         ss_pass_stored();
     </script>
-
 </div>
+<?php
+//This function doesn't affect the display, is just for testing settings.
+function prepareAdmOutput($ss_tab)
+{
+		$options = get_option('styleselector');
+		$ss_fieldTypes = array("ss_disp_head", "ss_select_style", "ss_select_sheet_div", "ss_select_sheet_sel","ss_selected_theme", "ss_opt_name", "ss_theme_option_type","ss_element","ss_bg_colorPicker","ss_fn_colorPicker","ss_myRange","ss_myRangeFont" ,"ss_option");
+		$ss_option_value = array("<select onchange='changeProps(this,".$ss_tab.")' id='widget_sselector_".$ss_tab."'><option value='Restore'>Restore</option>");
+		$ss_option_values = array("Restore");
+		for ($ss_tab = 1; $ss_tab < 6; $ss_tab++)
+		{
+			$ss_fieldId = $ss_fieldTypes[4]."_".$ss_tab;
+			if (get_stylesheet() == $options[$ss_fieldId])
+			{
+				for ($ss_count = 1; $ss_count < 11; $ss_count++)
+				{
+					$tem_str = $options["ss_option"."_".$ss_tab."_".$ss_count];
+					if ($options["ss_option"."_".$ss_tab."_".$ss_count] == 1)
+					{
+						$str = "'".$ss_tab."',";
+						if (!in_array($options["ss_opt_name"."_".$ss_tab."_".$ss_count], $ss_option_values))
+						{
+
+							array_push($ss_option_value,"<option value='".$options["ss_opt_name"."_".$ss_tab."_".$ss_count]."'>".$options["ss_opt_name"."_".$ss_tab."_".$ss_count]."</option>");
+							array_push($ss_option_values,$options["ss_opt_name"."_".$ss_tab."_".$ss_count]);						
+						}
+						for ($ss_fieldCount = 5; $ss_fieldCount < count($ss_fieldTypes); $ss_fieldCount++)
+						{
+							$ss_fieldId = $ss_fieldTypes[$ss_fieldCount]."_".$ss_tab."_".$ss_count;
+							if ($ss_fieldCount == 5)
+							{$str = $str."'".$options[$ss_fieldId]."'";}
+							else{$str = $str.",'".$options[$ss_fieldId]."'";}
+						}
+						echo "<script>addOption(".$str.");</script>";
+					}
+				}
+			}
+		}
+		foreach ($ss_option_value as $key=>$item){echo "$item\n";}
+		echo "</select>
+		<div><span style='font-size:15px;vertical-align:50%;cursor: pointer' title='Click to make the text smaller'>A</span>
+		<span style='font-size:15px;vertical-align:50%;'>&#10138;</span>
+		<span style='font-size:30px; vertical-align:25%;cursor:pointer' title='Click to make the text bigger'>A</span></div>";
+
+}
+ ?>

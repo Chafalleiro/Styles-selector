@@ -96,6 +96,7 @@
 }
 .vertical [type=radio]:checked ~ label ~ .content, .vertical [type=checkbox]:checked ~ label ~ .content {
     height:110px;
+	overflow: auto;
     border:1px solid #0073AA;
 }
 

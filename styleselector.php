@@ -16,7 +16,7 @@
  * Plugin Name:       Styles selector
  * Plugin URI:        https://github.com/Chafalleiro/Styles-selector
  * Description:       Changes the styles by classes dinamically. Needs some knowledge about the css styles of the templates to alter.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Alfonso
  * Author URI:        https://chafalladas.com
  * License:           GPL-2.0+

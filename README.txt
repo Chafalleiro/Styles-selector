@@ -7,9 +7,9 @@ Tags: styles, switcher, css, theme configuration
 Stable tag: trunk
 Tested up to: 5.2.3
 License: GPLv2 or later
-Version:           1.0.0
+Version:           1.1.0
 Requires at least: 5.2
-Requires PHP:      7.2
+Requires PHP:      7.1.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,14 +21,22 @@ https://scotch.io/tutorials/how-to-build-a-wordpress-plugin-part-1
 https://mraffaele.com/posts/2011/10/25/css-accordion-no-javascript/
 https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
 https://www.w3schools.com/
+https://www.wordpress.org/
 
 == Description ==
 
 Plugin for altering several items in a theme in order to change the visualization. You can choose which kind of item will be,
 an individual CSS element or an entire class by specifing the type of element.
-If you have a theme switcher, you can also alter several themes (up to five).
+If you have a theme switcher, like "multidevice switcher", you can also alter several themes (up to five).
 Once you have saved the themes, their elements and the name of the option, a widget will be created with a menu list of the options you did,
 so the users can set the display options they want.
+
+
+The main idea of this plugin came when reading some webnovel in my cellphone and couldn't change the color of the text when the light changed.
+It provides the user an instant change of the colors of the screen, colors preselected by the administrator in order to not change very much the design of the page,
+ also it has the advantage of not reloading the content, since there is no change of the theme, just an alteration of the CSS properties.
+ 
+
 
 Usage
 -----
@@ -36,7 +44,9 @@ This plugin creates a select menu that lets a user change the color style of a p
 
 ## Admin menu
 
-* The admin can choose up to five different themes from the installed ones to be changed by selectint them in a drop down at the beginning of each tab of the configuration page. Note that you can select the same theme several times if you run out of mods.
+* The admin can choose up to five different themes from the installed ones to be changed by selecting them in a drop down at the beginning of each tab of the configuration page. Note that you can select the same theme several times if you run out of mods.
+* You can force the selector to be displayed at the top of the page instead of using a widget or a shortcode.
+* You can configure the style of the selector for each theme.
 * At each theme tab the admin can set up to ten color modifications to classes or individual elements.
 	### Admin menuOptions fields
 	* Name an option to be displayed to the user. This option will be added in the select input field.
@@ -55,7 +65,8 @@ This plugin creates a select menu that lets a user change the color style of a p
 	* Additionally is a last minute adittion, you can uncoment the las line of the widget-selector.php file in the /public/partials dir of the pulugin directory using the wordpress plugin editor to show the drop down at the start of each page.
 
 ## Frontend
-	* The user can choose between a default "Restore" option, and the ones defined by you.
+	* The user can choose between a default "Restore" option, and the ones defined by you. This option is persistent.
+	* The user can select the size of the text. This option is not persistent.
 	
 == Installation ==
 
@@ -73,6 +84,19 @@ This plugin creates a select menu that lets a user change the color style of a p
 
 Tested in a multisite with * domain names and works fine. Can't say yet if in a MU with only one domain will work the same.
 
+= Works with xxx theme? =
+
+Can't say. CSS is sometimes tricky and is nor always clear which element to change.
+Some themes may prevent tampering or have dynamic HTML5 and javascript updates of the styles.
+
+= Why can't I add my own stylesheet? =
+
+This plugin isn't a theme switcher, neither a customizer, it just changes colors and size of the fonts for better reading.
+
+= I have updated the plugin and fonts doesn't change size. =
+
+Try refreshing all caches, sometimes it takes time to reload styles and scripts.
+
 
 == Screenshots ==
 1. Page dark themed by the plugin.
@@ -82,20 +106,31 @@ Tested in a multisite with * domain names and works fine. Can't say yet if in a 
 
 == Changelog ==
 
+= 1.1.0 =
+Added font size to frontend.
+Configurable selector.
+Optional force selector on head.
+Added fields to options database.
+Some spelling errors corrected.
+Added "overflow:auto" to options boxes.
+Added some nonsense to the FAQ.
+
 = 1.0 =
 First version
+
 == Upgrade Notice ==
+= 1.1.0 =
+
+Added some fronted and backend options. Corrected spelling and deleted some unneded code.
 
 = 1.0 =
 Plugin release.
 
 == TODO ==
 
-Add font size and face frontend customization.
-Add background image backend option.
-Option to selectively display the "head" menu instead of uncomenting it.
 Prepare code for translation.
 Clean a bit the code.
+Add background image backend option.
 
 == Directories explanation ==
 * styleselector: contains subdirectories, license, readme and unistall files.

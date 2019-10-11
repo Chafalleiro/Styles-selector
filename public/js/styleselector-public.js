@@ -34,6 +34,7 @@ var changes = {
 		return "rgba(" + tcolr.ssR + ", " + tcolr.ssG + ", " + tcolr.ssB + ", "+ this.alfaFn/100 + ")";
 	}
 }
+
 //Add new values
 function addOption(a_option,a_class,a_name,a_color,a_font,a_alfab,a_alfaf,dontcare)
 {
@@ -52,10 +53,41 @@ function addOption(a_option,a_class,a_name,a_color,a_font,a_alfab,a_alfaf,dontca
 		rgbColor:{value:a_color}, rgbFont:{value:a_font}, alfaBg:{value:a_alfab}, alfaFn:{value:a_alfaf}}));
 	}
 }
-//Change colors
-function changeProps(wichOption)
+function setSize(size)
 {
-	var i,j=0;
+	var option=getCookie("ss_Option");
+	if (option == ""){option = "Restore"}
+	changeProps(option,size);
+}
+//Clean colors
+function Restore(typeOfElement, element)
+{
+	for(i=0;i<eleArray.length;i++)
+	{
+		if (eleArray[i].option == "Restore")
+		{
+			if (eleArray[i].isClass == 0)
+			{
+				var x = document.getElementsByClassName(eleArray[i].eleName);
+				for (j = 0; j < x.length; j++)
+				{
+					x[j].style.backgroundColor = eleArray[i].rgbColor;
+					x[j].style.color = eleArray[i].rgbFont;
+				}
+			}
+			else
+			{
+				document.getElementById(eleArray[i].eleName).style.backgroundColor = eleArray[i].rgbColor;
+				document.getElementById(eleArray[i].eleName).style.color = eleArray[i].rgbFont;
+			}
+		}
+	}
+}
+//Change colors
+function changeProps(wichOption,size)
+{
+	Restore();
+	var i,j,newSize=0;
 	for(i=0;i<eleArray.length;i++)
 	{
 		if(wichOption == eleArray[i].option)
@@ -67,13 +99,18 @@ function changeProps(wichOption)
 				{
 					if (eleArray[i].option == "Restore")
 					{
-						x[j].style.backgroundColor = eleArray[i].rgbColor;
-						x[j].style.color = eleArray[i].rgbFont;
+						Restore();
 					}
 					else
 					{
 						x[j].style.backgroundColor = eleArray[i].bgColor();
 						x[j].style.color = eleArray[i].fnColor();
+					}
+					if(size != null)
+					{
+						newSize = size + parseFloat(x[j].style.fontSize.replace("em", ""));
+						if (isNaN(newSize)){newSize = parseFloat(size) + parseFloat(1.25);}
+						x[j].style.fontSize = newSize + "em";
 					}
 				}
 			}
@@ -81,19 +118,24 @@ function changeProps(wichOption)
 			{
 				if (eleArray[i].option == "Restore")
 				{
-					document.getElementById(eleArray[i].eleName).style.backgroundColor = eleArray[i].rgbColor;
-					document.getElementById(eleArray[i].eleName).style.color = eleArray[i].rgbFont;
+					Restore();
 				}
 				else
 				{
-					var pp = eleArray[i].fnColor();
 					document.getElementById(eleArray[i].eleName).style.backgroundColor = eleArray[i].bgColor();
 					document.getElementById(eleArray[i].eleName).style.color = eleArray[i].fnColor();
+				}
+				if(size != null)
+				{
+					newSize = size + parseFloat(document.getElementById(eleArray[i].eleName).style.fontSize.replace("em", ""));
+					if (isNaN(newSize)){newSize = parseFloat(size) + parseFloat(1.25);}
+					document.getElementById(eleArray[i].eleName).style.fontSize = newSize + "em";
 				}
 			}
 		}
 	}
 	setCookie("ss_Option",wichOption,365);
+	if (newSize !== 0){setCookie("ss_Size",newSize,365);}
 }
 //Save previous values
 function saveValues(i)
@@ -108,7 +150,6 @@ function saveValues(i)
 		exists = true;
 		}
 	}
-	
 	if(!exists)
 	{
 		if(eleArray[i].isClass == 0)
@@ -147,6 +188,7 @@ function setCookie(cname,cvalue,exdays) {
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires=" + d.toGMTString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  return;  
 }
 
 function getCookie(cname) {
@@ -167,11 +209,13 @@ function getCookie(cname) {
 
 function checkCookie() {
 	var option=getCookie("ss_Option");
+	var size=getCookie("ss_Size") - 1.25;
 //console.log("Cookie?");
+	size = size.toFixed(2)
 	if (option != "")
 	{
 //console.log("Cookie!");
-		changeProps(option);
+		changeProps(option,size);
 		return option;
 	}
 	else
