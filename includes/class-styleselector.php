@@ -19,7 +19,7 @@
  *
  * Plugin URI:        https://chafalladas.com/styles-selector-plugin/
  * Description:       A plugin that changes on the fly the styles of a page.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 5.2
  * Requires PHP:      7.1.3.2
  * Author:            Alfonso Abelenda Escudero

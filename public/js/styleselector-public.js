@@ -56,7 +56,7 @@ function addOption(a_option,a_class,a_name,a_color,a_font,a_alfab,a_alfaf,dontca
 function setSize(size)
 {
 	var option=getCookie("ss_Option");
-	if (option == ""){option = "Restore"}
+	if (option == ""){option = "Restore";}
 	changeProps(option,size);
 }
 //Clean colors
@@ -210,6 +210,7 @@ function getCookie(cname) {
 function checkCookie() {
 	var option=getCookie("ss_Option");
 	var size=getCookie("ss_Size") - 1.25;
+	if (size == - 1.25){option = "Restore";size = 0;setCookie("ss_Size",size,365);}//No size, or size == 0
 //console.log("Cookie?");
 	size = size.toFixed(2)
 	if (option != "")

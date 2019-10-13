@@ -7,7 +7,7 @@ Tags: styles, switcher, css, theme configuration
 Stable tag: trunk
 Tested up to: 5.2.3
 License: GPLv2 or later
-Version:           1.1.0
+Version:           1.1.1
 Requires at least: 5.2
 Requires PHP:      7.1.32
 License: GPLv2 or later
@@ -119,6 +119,10 @@ Added some nonsense to the FAQ.
 First version
 
 == Upgrade Notice ==
+= 1.1.1 =
+
+Size is set when loading to prevent font-size=0
+
 = 1.1.0 =
 
 Added some fronted and backend options. Corrected spelling and deleted some unneded code.
